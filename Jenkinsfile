@@ -5,7 +5,7 @@ pipeline {
       stage('Build') {
         steps {
           script {
-            dockerImage = docker.build("junaid345/resume:${env.BUILD_ID}")
+            dockerImage = docker.build("mehmoodahmed313/resume:${env.BUILD_ID}")
         }
     }
 }
@@ -35,10 +35,10 @@ pipeline {
                                 configName: "thiird", 
                                 transfers: [sshTransfer(
                                     execCommand: """
-                                        docker pull junaid345/resume:${env.BUILD_ID}
-                                        docker stop junaid345-cv-container || true
-                                        docker rm anas-cv-container || true
-                                        docker run -d --name junaid345-cv-container -p 80:80 junaid345/resume:${env.BUILD_ID}
+                                        docker pull mehmoodahmed313/resume:${env.BUILD_ID}
+                                        docker stop mehmoodahmed313-cv-container || true
+                                        docker rm mehmoodahmed313-cv-container || true
+                                        docker run -d --name mehmoodahmed313-cv-container -p 80:80 mehmoodahmed313/resume:${env.BUILD_ID}
                                     """
                                 )]
                             )
@@ -57,10 +57,10 @@ pipeline {
                                     configName: "thiird",
                                     transfers: [sshTransfer(
                                         execCommand: """
-                                            docker pull junaid345/resume:${previousSuccessfulTag}
-                                            docker stop junaid345-cv-container || true
-                                            docker rm junaid345-cv-container || true
-                                            docker run -d --name junaid345-cv-container -p 80:80 junaid345/resume:${previousSuccessfulTag}
+                                            docker pull mehmoodahmed313/resume:${previousSuccessfulTag}
+                                            docker stop mehmoodahmed313-cv-container || true
+                                            docker rm mehmoodahmed313-cv-container || true
+                                            docker run -d --name mehmoodahmed313-cv-container -p 80:80 junaid345/resume:${previousSuccessfulTag}
                                         """
                                     )]
                                 )
@@ -78,7 +78,7 @@ pipeline {
     post {
         success {
             mail(
-                to: 'junaidaw567@gmail.com',
+                to: 'modhipaji786@gmail.com',
                 subject: "Failed Pipeline: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                 body: "Something is wrong with the build ${env.BUILD_URL}"
             )
@@ -86,7 +86,7 @@ pipeline {
             
         failure {
             mail(
-                to: 'junaidaw567@gmail.com',
+                to: 'modhipaji786@gmail.com',
                 subject: "Failed Pipeline: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                 body: "Something is wrong with the build ${env.BUILD_URL}"
             )
