@@ -12,7 +12,7 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockeerhub') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         dockerImage.push()
                     }
                 }
@@ -32,7 +32,7 @@ pipeline {
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
-                                configName: "thiird", 
+                                configName: "new", 
                                 transfers: [sshTransfer(
                                     execCommand: """
                                         docker pull mehmoodahmed313/resume:${env.BUILD_ID}
